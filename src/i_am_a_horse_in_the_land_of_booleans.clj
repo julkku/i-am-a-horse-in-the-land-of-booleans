@@ -40,28 +40,34 @@
 
 
 (defn not-teen? [age]
-  ":(")
+  (not (teen? age)))
 
 (defn generic-doublificate [x]
   (cond
    (number? x)              (* 2 x)
    (empty? x)               nil
-   (or (list? x) (vector x)) (* 2 (count x))
+   (or (list? x) (vector? x)) (* 2 (count x))
    :else                    true
    ))
 
 (defn leap-year? [year]
-  ":(")
+  (cond
+   (divides? 400 year) true
+   (divides? 100 year) false
+   (divides? 4 year) true
+   :else false
+   ))
 
 ; '_______'
 
 
-(generic-doublificate 1)        ;=> 2
-(generic-doublificate [1 2])    ;=> 4
-(generic-doublificate '(65 21)) ;=> 4
-(generic-doublificate {})       ;=> nil
-(generic-doublificate [])       ;=> nil
-(generic-doublificate {:a 1})   ;=> true
+(leap-year? 100) ;=> false
+(leap-year? 200) ;=> false
+(leap-year? 400) ;=> true
+(leap-year? 12)  ;=> true
+(leap-year? 20)  ;=> true
+(leap-year? 15)  ;=> false
+
 
 
 
